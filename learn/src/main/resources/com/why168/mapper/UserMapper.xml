@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.why168.mapper.UserMapper">
+
+    <!--
+        int insertUser();
+            useGeneratedKeys:设置当前标签中的sql使用了自增的主键
+            keyProperty:将自增的主键的值赋值给传输到映射文件中参数的某个属性
+    -->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user (username, password, age, sex, email)
+        values (#{username}, #{password}, #{age}, #{sex}, #{email})
+    </insert>
+
+    <!--int deleteUser();-->
+    <delete id="deleteUser">
+        delete
+        from t_user
+        where id = #{id}
+    </delete>
+
+    <!--int deleteMore(@Param("ids") String ids);-->
+    <delete id="deleteMore">
+        delete
+        from t_user
+        where id in (${ids})
+    </delete>
+
+    <!--
+        User getUserById();
+            查询功能的标签必须设置resultType或resultMap
+            resultType：设置默认的映射关系
+            resultMap：设置自定义的映射关系（字段名与属性名不一样时候，连表查询）
+    -->
+    <select id="getUserById" resultType="com.why168.domain.User">
+        select *
+        from t_user
+        where id = #{id}
+    </select>
+
+    <!--List<User> getAllUser();-->
+    <select id="getAllUser" resultType="User">
+        select *
+        from t_user
+    </select>
+
+    <!--List<User> getUserByLike(@Param("username") String username);-->
+    <select id="getUserByLike" resultType="User">
+        <!--select * from t_user where username like '%${username}%'-->
+        <!--select * from t_user where username like concat('%',#{username},'%')-->
+        select * from t_user where username like "%"#{username}"%"
+    </select>
+
+    <!--List<User> getUserByTableName(@Param("tableName") String tableName);-->
+    <select id="getUserByTableName" resultType="User">
+        select *
+        from ${tableName}
+    </select>
+
+    <!--Map<String, Object> getUserByIdToMap(@Param("id") Integer id);-->
+    <select id="getUserByIdToMap" resultType="map">
+        select *
+        from t_user
+        where id = #{id}
+    </select>
+
+    <!--Map<String, Object> getAllUserToMap();-->
+    <select id="getAllUserToMap" resultType="map">
+        select *
+        from t_user
+    </select>
+
+    <!--User checkLoginByParam(@Param("username") String username, @Param("password") String password);-->
+    <select id="checkLoginByParam" resultType="User">
+        select *
+        from t_user
+        where username = #{username}
+          and password = #{password}
+    </select>
+
+    <!--User checkLoginByMap(Map<String, Object> map);-->
+    <select id="checkLoginByMap" resultType="User">
+        select *
+        from t_user
+        where username = #{username}
+          and password = #{password}
+    </select>
+
+    <!--User checkLogin(String username, String password);-->
+    <select id="checkLogin" resultType="User">
+        <!--select * from t_user where username = #{arg0} and password = #{arg1}-->
+        select * from t_user where username = '${param1}' and password = '${param2}'
+    </select>
+
+    <!--User getUserByUsername(String username);-->
+    <select id="getUserByUsername" resultType="User">
+        <!--select * from t_user where username = #{username}-->
+        select * from t_user where username = '${username}'
+    </select>
+
+
+</mapper>

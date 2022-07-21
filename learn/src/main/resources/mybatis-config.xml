@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--
+        MyBatis核心配置文件中，标签的顺序：
+            properties
+            settings
+            typeAliases
+            typeHandlers
+            objectFactory
+            objectWrapperFactory
+            reflectorFactory
+            plugins
+            environments
+            databaseIdProvider
+            mappers
+    -->
+
+    <!--引入properties文件-->
+    <properties resource="jdbc.properties"/>
+
+    <!--设置MyBatis的全局配置-->
+    <settings>
+        <!--将_自动映射为驼峰，emp_name:empName-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--开启延迟加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+
+<!--        &lt;!&ndash;禁用二级缓存,默认true&ndash;&gt;-->
+        <setting name="cacheEnabled" value="true"/>
+<!--        &lt;!&ndash;一级缓存指定为statement级别&ndash;&gt;-->
+<!--        <setting name="localCacheScope" value="STATEMENT"/>-->
+    </settings>
+
+    <!--设置类型别名-->
+    <typeAliases>
+        <!--
+           typeAlias：设置某个类型的别名
+           属性：
+               type：设置需要设置别名的类型
+               alias：设置某个类型的别名，若不设置该属性，那么该类型拥有默认的别名，即类名且不区分大小写
+        -->
+        <!--        <typeAlias type="com.why168.domain.User" alias="User"/>-->
+
+        <!--以包为单位，将包下所有的类型设置默认的类型别名，即类名且不区分大小写-->
+        <package name="com.why168.domain"/>
+    </typeAliases>
+
+    <!--
+        environments：配置多个连接数据库的环境
+        属性：
+            default：设置默认使用的环境的id
+    -->
+    <environments default="develop">
+
+        <!--
+           environment：配置某个具体的环境
+           属性：
+               id：表示连接数据库的环境的唯一标识，不能重复
+        -->
+        <environment id="develop">
+
+            <!--
+                transactionManager：设置事务管理方式
+                属性：
+                    type="JDBC|MANAGED"
+                    JDBC：表示当前环境中，执行SQL时，使用的是JDBC中原生的事务管理方式，事务的提交或回滚需要手动处理
+                        1.JDBC：默认的事务管理方式，使用JDBC中原生的事务管理方式，事务的提交或回滚需要手动处理
+                        2.MANAGED：被管理，例如Spring
+            -->
+            <transactionManager type="JDBC"/>
+
+            <!--
+                dataSource：配置数据源
+                属性：
+                    type：设置数据源的类型
+                    type="POOLED|UNPOOLED|JNDI"
+                        1.POOLED：表示使用数据库连接池缓存数据库连接
+                        2.UNPOOLED：表示不使用数据库连接池
+                        3.JNDI：表示使用上下文中的数据源
+            -->
+            <dataSource type="POOLED">
+                <!--设置连接数据库的驱动-->
+                <property name="driver" value="${driver}"/>
+                <!--设置连接数据库的连接地址-->
+                <property name="url" value="${url}"/>
+                <!--设置连接数据库的用户名-->
+                <property name="username" value="${username}"/>
+                <!--设置连接数据库的密码-->
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="online">
+            <transactionManager type="MANAGED">
+                <property name="" value=""/>
+            </transactionManager>
+            <dataSource type="POOLED"><!-- 带有连接池-->
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--引入映射文件-->
+    <mappers>
+        <!--
+            以包为单位引入映射文件
+            要求：
+            1、mapper接口所在的包要和映射文件所在的包一致
+            2、mapper接口要和映射文件的名字一致
+        -->
+<!--        <mapper resource="mappers/UserMapper.xml"/>-->
+
+        <package name="com.why168.mapper"/>
+    </mappers>
+</configuration>

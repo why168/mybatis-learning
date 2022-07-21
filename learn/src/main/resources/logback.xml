@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %logger输出日志的logger名 %msg：日志消息，%n是换行符 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%blue([%d{yyyy-MM-dd HH:mm:ss.SSS}]) %boldYellow([%thread]) %highlight(%-5level) %boldGreen(%logger{36}) : %msg%n"/>
+
+    <property name="CONSOLE_LOG_PATTERN2"
+              value="%date{yyyy-MM-dd HH:mm:ss} | %highlight(%-5level) | %boldYellow(%thread) | %boldGreen(%logger) | %msg%n"/>
+
+
+    <!-- 按照顺序分别是：时间、日志级别、线程名称、打印日志的类、日志主体内容、换行 -->
+    <property name="CONSOLE_LOG_PATTERN3"
+              value="[%d{HH:mm:ss.SSS}] [%-5level] [%thread] [%logger] [%msg]%n"/>
+
+
+    <!-- 指定日志输出的位置 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <!-- 根据特殊需求指定局部日志级别 -->
+    <logger name="java.sql" level="DEBUG"/>
+    <logger name="org.apache.ibatis" level="DEBUG"/>
+    <logger name="com.why168.mapper" level="DEBUG"/>
+
+    <!-- 设置全局日志级别。日志级别按顺序分别是：DEBUG、INFO、WARN、ERROR -->
+    <!-- 指定任何一个日志级别都只打印当前级别和后面级别的日志。 -->
+    <root level="DEBUG">
+        <!-- 指定打印日志的appender，这里通过“STDOUT”引用了前面配置的appender -->
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
