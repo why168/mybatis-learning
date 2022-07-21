@@ -107,7 +107,7 @@ public void insertUser(){
 - 可以通过`@Param`注解标识mapper接口中的方法参数，此时，会将这些参数放在map集合中
     1. 以`@Param`注解的value属性值为键，以参数为值；
     2. 以`param1`,`param2`...为键，以参数为值；
-- 只需要通过\${}和#{}访问map集合的键就可以获取相对应的值，注意${}需要手动加单引号
+- 只需要通过`${}`和`#{}`访问map集合的键就可以获取相对应的值，注意`${}`需要手动加单引号
 
 ```xml
 <!--User CheckLoginByParam(@Param("username") String username, @Param("password") String password);-->
@@ -291,7 +291,7 @@ List<User> getUserByLike(@Param("username") String username);
 
 ### 2、批量删除
 
-- 只能使用\${}，如果使用#{}，则解析后的sql语句为`delete from t_user where id in ('1,2,3')`，这样是将`1,2,3`看做是一个整体，只有id为`1,2,3`
+- 只能使用`${}`，如果使用`#{}`，则解析后的sql语句为`delete from t_user where id in ('1,2,3')`，这样是将`1,2,3`看做是一个整体，只有id为`1,2,3`
   的数据会被删除。正确的语句应该是`delete from t_user where id in (1,2,3)`，或者`delete from t_user where id in ('1','2','3')`
 
 ```java
@@ -324,7 +324,7 @@ public void deleteMore(){
 
 ### 3、动态设置表名
 
-- 只能使用${}，因为表名不能加单引号
+- 只能使用`${}`，因为表名不能加单引号
 
 ```java
 /**
