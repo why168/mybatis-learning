@@ -7,9 +7,9 @@
 >
 
 1. <a target="_blank" href="https://github.com/why168/mybatis-learning/blob/main/01Mybatis实战技巧.md">01Mybatis实战技巧</a>
-2. <a target="_blank" href="https://github.com/why168/mybatis-learning/blob/main/01Mybatis实战技巧.md">02MyBatis的缓存</a>
-3. <a target="_blank" href="https://github.com/why168/mybatis-learning/blob/main/01Mybatis实战技巧.md">03MyBatis的逆向工程</a>
-4. <a target="_blank" href="https://github.com/why168/mybatis-learning/blob/main/01Mybatis实战技巧.md">04MyBatis分页插件</a>
+2. <a target="_blank" href="https://github.com/why168/mybatis-learning/blob/main/02MyBatis缓存技术.md">02MyBatis缓存技术</a>
+3. <a target="_blank" href="https://github.com/why168/mybatis-learning/blob/main/03MyBatis逆向工程.md">03MyBatis逆向工程</a>
+4. <a target="_blank" href="https://github.com/why168/mybatis-learning/blob/main/04Mybatis分页插件.md">04MyBatis分页插件</a>
 
 
 ## Mybatis简介
