@@ -12,6 +12,8 @@
     <modules>
         <module>learn</module>
         <module>learn_generator</module>
+        <module>learn_mybatis_plus</module>
+        <module>learn_mybatis_plus_datasource</module>
     </modules>
 
     <properties>

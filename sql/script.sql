@@ -1,40 +1,63 @@
 create schema test collate utf8_general_ci;
+user test;
 
-create table if not exists test.t_dept
+CREATE TABLE `t_dept`
 (
-    did       int auto_increment
-        primary key,
-    dept_name varchar(64) null
-);
+    `did`       int(11) NOT NULL AUTO_INCREMENT,
+    `dept_name` varchar(64) DEFAULT NULL,
+    PRIMARY KEY (`did`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-create table if not exists test.t_emp
+CREATE TABLE `t_emp`
 (
-    eid      int auto_increment
-        primary key,
-    emp_name varchar(16) null,
-    age      int         null,
-    sex      char        null,
-    email    varchar(32) null,
-    did      int         null
-);
+    `eid`      int(11) NOT NULL AUTO_INCREMENT,
+    `emp_name` varchar(16) DEFAULT NULL,
+    `age`      int(11) DEFAULT NULL,
+    `sex`      char(1)     DEFAULT NULL,
+    `email`    varchar(32) DEFAULT NULL,
+    `did`      int(11) DEFAULT NULL,
+    PRIMARY KEY (`eid`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
-create table if not exists test.t_user
+CREATE TABLE `t_user`
 (
-    id       int auto_increment
-        primary key,
-    username varchar(255) null,
-    password varchar(255) null,
-    age      int          null,
-    sex      varchar(255) null,
-    email    varchar(255) null
-);
+    `id`       int(11) NOT NULL AUTO_INCREMENT,
+    `username` varchar(255) DEFAULT NULL,
+    `password` varchar(255) DEFAULT NULL,
+    `age`      int(11) DEFAULT NULL,
+    `sex`      varchar(255) DEFAULT NULL,
+    `email`    varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
-create table if not exists test.user
+CREATE TABLE `user`
 (
-    id   int auto_increment
-        primary key,
-    name varchar(32) default '' not null,
-    age  smallint    default 1  null
-)
-    charset = utf8mb4;
+    `id`   bigint(20) NOT NULL AUTO_INCREMENT,
+    `name` varchar(32) NOT NULL DEFAULT '',
+    `age`  smallint(6) DEFAULT '1',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `user_plus`
+(
+    `uid`        bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `user_name`  varchar(30) DEFAULT NULL COMMENT '姓名',
+    `age`        int(11) DEFAULT NULL COMMENT '年龄',
+    `email`      varchar(50) DEFAULT NULL COMMENT '邮箱',
+    `is_deleted` int(11) DEFAULT '0' COMMENT '0:未删除',
+    PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `product_plus`
+(
+    `id`      bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `NAME`    varchar(30) DEFAULT NULL COMMENT '商品名称',
+    `price`   int(11) DEFAULT '0' COMMENT '价格',
+    `VERSION` int(11) DEFAULT '0' COMMENT '乐观锁版本号',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO product_plus (id, NAME, price)
+VALUES (1, '外星人笔记本', 100);

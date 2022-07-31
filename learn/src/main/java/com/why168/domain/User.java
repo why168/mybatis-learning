@@ -1,7 +1,5 @@
 package com.why168.domain;
 
-import org.apache.ibatis.type.Alias;
-
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -75,13 +73,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
-                ", sex='" + sex + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "User{" + "id=" + id + ", username='" + username + '\'' + ", password='" + password + '\'' + ", age=" + age + ", sex='" + sex + '\'' + ", email='" + email + '\'' + '}';
     }
 }

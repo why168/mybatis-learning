@@ -5,11 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * Date:2021/11/30
- * Author:ybc
- * Description:
- */
 public interface DynamicSQLMapper {
 
     /**
